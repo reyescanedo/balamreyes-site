@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Una pequeña página de bienvenida: Hola mundo.">
+  <title>Hola mundo | Balam Reyes</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    :root {
+      --ink: #18231f;
+      --muted: #61706a;
+      --paper: #f4f2ec;
+      --card: #fffdf8;
+      --lime: #d8ff65;
+      --coral: #ff715b;
+      --line: rgba(24, 35, 31, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(24, 35, 31, .055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 35, 31, .055) 1px, transparent 1px),
+        var(--paper);
+      background-size: 48px 48px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 30px 6vw;
+      animation: appear .7s ease both;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 4px 4px 0 var(--ink);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 0 5px rgba(255, 113, 91, .15);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(300px, .88fr);
+      gap: clamp(48px, 8vw, 120px);
+      align-items: center;
+      max-width: 1240px;
+      min-height: calc(100vh - 92px);
+      margin: 0 auto;
+      padding: 50px 6vw 90px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      color: var(--coral);
+      font-family: 'DM Mono', monospace;
+      font-size: .8rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      animation: rise .7s .1s ease both;
+    }
+
+    h1 {
+      max-width: 730px;
+      margin: 0;
+      font-size: clamp(4rem, 9.5vw, 9rem);
+      line-height: .86;
+      letter-spacing: -.075em;
+      animation: rise .7s .18s ease both;
+    }
+
+    h1 span { color: var(--coral); }
+
+    .intro {
+      max-width: 500px;
+      margin: 32px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.8vw, 1.22rem);
+      line-height: 1.6;
+      animation: rise .7s .28s ease both;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 38px;
+      animation: rise .7s .38s ease both;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 20px;
+      border: 2px solid var(--ink);
+      color: var(--ink);
+      background: var(--lime);
+      box-shadow: 5px 5px 0 var(--ink);
+      font: 600 .92rem 'Space Grotesk', sans-serif;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .button:hover, .button:focus-visible {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .arrow { font-size: 1.2rem; line-height: 0; }
+
+    .note {
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: .72rem;
+    }
+
+    .console {
+      position: relative;
+      padding: 24px;
+      border: 2px solid var(--ink);
+      background: var(--card);
+      box-shadow: 12px 12px 0 var(--coral);
+      animation: rise .8s .25s ease both;
+    }
+
+    .console::before {
+      position: absolute;
+      top: -18px;
+      right: 28px;
+      width: 62px;
+      height: 36px;
+      border: 2px solid var(--ink);
+      background: var(--lime);
+      content: '';
+      transform: rotate(5deg);
+    }
+
+    .console-bar {
+      display: flex;
+      gap: 7px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .console-bar i {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    pre {
+      min-height: 190px;
+      margin: 25px 0 0;
+      white-space: pre-wrap;
+      font: 500 clamp(.8rem, 1.5vw, .98rem)/1.9 'DM Mono', monospace;
+    }
+
+    .prompt { color: var(--coral); }
+    .comment { color: #8d9993; }
+    .output { color: var(--ink); font-size: 1.15em; }
+
+    .detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 6vw 50px;
+    }
+
+    .detail-item {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .detail-item strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--ink);
+      font-size: .95rem;
+    }
+
+    @keyframes appear { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 760px) {
+      header { padding-top: 22px; }
+      .status { display: none; }
+      main {
+        display: block;
+        min-height: auto;
+        padding-top: 70px;
+      }
+      h1 { font-size: clamp(4rem, 21vw, 7rem); }
+      .console { margin: 72px 8px 40px 0; }
+      .detail { grid-template-columns: 1fr; padding-bottom: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="./" aria-label="Inicio de Balam Reyes">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Balam Reyes
+      </a>
+      <div class="status"><span class="status-dot" aria-hidden="true"></span> sitio en línea</div>
+    </header>
+
+    <main>
+      <section aria-labelledby="page-title">
+        <span class="eyebrow">01 / primer contacto</span>
+        <h1 id="page-title">Hola<br><span>mundo.</span></h1>
+        <p class="intro">Una pequeña señal desde este rincón de internet. El primer paso de algo que apenas comienza.</p>
+        <div class="actions">
+          <a class="button" href="#mensaje">Ver el mensaje <span class="arrow" aria-hidden="true">↘</span></a>
+          <span class="note">hecho con curiosidad</span>
+        </div>
+      </section>
+
+      <section class="console" id="mensaje" aria-label="Mensaje de bienvenida">
+        <div class="console-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+        <pre><span class="comment">// todo comienza con una línea</span>
+<span class="prompt">&gt;</span> const saludo = <span class="output">"Hola mundo"</span>
+<span class="prompt">&gt;</span> console.log(saludo)
+
+<span class="output">Hola mundo</span><span class="prompt">_</span></pre>
+      </section>
+    </main>
+
+    <footer class="detail">
+      <div class="detail-item"><strong>Estado</strong>Listo para recibir visitas</div>
+      <div class="detail-item"><strong>Versión</strong>01.000 — el comienzo</div>
+    </footer>
+  </div>
+</body>
+</html>
